@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
@@ -21,9 +23,12 @@
      -->
     <div class="frame">
         <nav class="navbar">
-            <button>Search <span class="team-name"></span></button>
-            <div class="navbar-avata">
-                <img src="img/avatar-thumb-paul9.jpeg">
+            <div class="navbar-item navbar-search">
+                <button>Search <span class="team-name"></span></button>
+            </div>
+            <div class="navbar-item"><button class="logout-button">Logout</button></div>
+            <div class="navbar-item navbar-avata">
+                <img src="img/guest.png">
             </div>
         </nav>
         <div class="main">
@@ -41,7 +46,7 @@
                 </div>
                 <div class="sidebar-section">
                     <div class="sidebar-menu-label sidebar-item">
-                        Channels
+                        Channels <button class='open-create-channel-modal'>+</button>
                     </div>
                     <ul class="sidebar-menu channel-list">
                         <li># random</li>
@@ -80,17 +85,19 @@
                         <input type="text" class="chat-input">
                     </div>
                 </div>
-                </div>
-                </div>
-                <!-- // main -->
-<!--                 <footer class="footer debug">
-                    footer
-                </footer> -->
-                </div>
-                <!-- // frame -->
-                <script src="sidebar.js"></script>
-                <script src="chat.js"></script>
-                </body>
-                
-                </html>
-                
+            </div>
+        </div>
+        <!-- // main -->
+        <!--                 <footer class="footer debug">
+                            footer
+                        </footer> -->
+        </div>
+        <!-- // frame -->
+        <script src="firebase.js"></script>
+        <script src="models/chat.js"></script>
+        <script src="controllers/sidebar.js"></script>
+        <script src="controllers/chat.js"></script>
+        </body>
+        
+        </html>
+        

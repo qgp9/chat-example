@@ -59,18 +59,28 @@ body,html {
     background-color: black;
     display: flex;
     padding: 5px;
+    color: white;
+    align-items: center;
 }
 
-.navbar button {
-    background-color: black;
-    color: rgba(255, 255, 255, 0.707);;
+.navbar-search {
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.33);
-    padding: 3px;
     width: 500px;
     text-align: center;
     margin: 0 auto;
-    display: block;
+    color: rgba(255, 255, 255, 0.707);
+}
+
+.navbar button {
+    padding: 3px;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 100%;
+    outline:none;
+    margin: 0;
 }
 
 .navbar-avata > img {
@@ -78,6 +88,11 @@ body,html {
     padding: 0px;
     margin: 0px;
     margin-bottom: -5px;
+}
+
+.navbar-item {
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 /*** Sidebar ***/
@@ -175,6 +190,7 @@ ul.sidebar-menu {
 }
 .message-content {
 }
+
 
 /* DEBUG */
 .debug {

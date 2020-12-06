@@ -5,26 +5,16 @@ const users = {
     id: '9f8wuef98we98fuwef',
   }
 }
-const messages = []
-/*
-msg = {
-  userId: '9f8wuef98we98fuwef',
-  date: Date.now(), // epoch time
-  content: '이것은....'
-  el: <element>
-}
-*/
-
 
 const elChatMain = document.querySelector('.chat-main')
 function renderMessages(messages) {
+  elChatMain.innerHTML = ''
+  const messagesElList = []
   messages.forEach((msg, i) => {
-    if (msg.el) return;
     const elMsg = document.createElement('div')
     elMsg.classList.add('message-container')
     const user = users[msg.userId]
-    const dateStr = (new Date(msg.date)).toISOString()
-    console.log(dateStr)
+    const dateStr = (new Date(msg.created)).toISOString()
     elMsg.innerHTML = `
     <div class="message-avata">
         <img src="${user.avata}">
@@ -41,26 +31,25 @@ function renderMessages(messages) {
         </div>
     </div>
     `
-    msg.el = elMsg;
-    elChatMain.appendChild(elMsg)
+    messagesElList.push(elMsg)
   })
+  elChatMain.append(...messagesElList)
+  setTimeout( () => elChatMain.scrollTop = elChatMain.scrollHeight, 0)
 }
 
-function addMessage(msg) {
-  messages.push(msg)
-  renderMessages(messages)
-}
+// subscribe chat model's update event
+chatModel.onUpdate = () => renderMessages(chatModel.messages)
 
+// handle input
 const elChatInput = document.querySelector('.chat-input')
 elChatInput.addEventListener("keyup", function (event) {
   if (elChatInput.value.length > 0 && event.keyCode === 13) {
     event.preventDefault();
-    addMessage({
+    chatModel.addMessage({
       userId: '9f8wuef98we98fuwef',
-      date: Date.now(),
+      created: Date.now(),
       content: elChatInput.value
     });
     elChatInput.value = '';
-    elChatMain.scrollTop = elChatMain.scrollHeight
   }
 });

@@ -1,3 +1,22 @@
+import React, { useState } from 'react';
+import { Button, Modal} from '@material-ui/core';
+
+function CreateChannel() {
+    return (
+        <>
+            <Button color="primary">+</Button>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+            >
+                {body}
+            </Modal>
+        </>
+    );
+}
+
 function Sidebar() {
     let teamName = 'Finko-Dev'
     let topLinks = [
@@ -11,7 +30,7 @@ function Sidebar() {
         <aside className="sidebar">
             <div className="sidebar-header">
                 {teamName}
-                </div>
+            </div>
             <div className="sidebar-section">
                 {topLinks.map(v => (
                     <div className="sidebar-item">
@@ -21,7 +40,7 @@ function Sidebar() {
             </div>
             <div className="sidebar-section">
                 <div className="sidebar-menu-label sidebar-item">
-                    Channels
+                    Channels <CreateChannel />
                 </div>
                 <ul className="sidebar-menu">
                     {channels.map(c => <li># {c}</li>)}
@@ -30,5 +49,4 @@ function Sidebar() {
         </aside>
     );
 }
-
 export default Sidebar;

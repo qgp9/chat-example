@@ -1,11 +1,11 @@
 import Sidebar from './Sidebar';
 import ChatContainer from './ChatContainer';
 
-function Main() {
+function Main(props) {
   return (
     <div className="main">
       <Sidebar />
-      <ChatContainer />
+      <ChatContainer messages={props.messages} addMessage={props.addMessage} />
     </div>
   );
 }

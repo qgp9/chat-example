@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import Message from '../Message';
 
 function ChatHeader() {
@@ -9,21 +9,22 @@ function ChatHeader() {
   );
 }
 
-function ChatMain({msgs}) {
+function ChatMain({messages}) {
+  const chatMainEl = useRef(null);
+  useEffect(() => {
+      setTimeout( () => chatMainEl.current.scrollTop = chatMainEl.current.scrollHeight, 0)
+  }, [messages])
   return (
-    <div className="chat-main">
-      {msgs.map(msg => <Message message={msg} key={msg.created}/>)}
+    <div className="chat-main" ref={chatMainEl}>
+      {messages.map(msg => <Message message={msg} key={msg.created}/>)}
     </div>
   );
 }
 
-function ChatInput({addMsg}) {
+function ChatInput({addMessage}) {
   const enterHandler = event => {
     if (event.key === 'Enter') {
-      addMsg({
-        displayName: 'Beomsu Chang',
-        photoURL: '/img/avatar-thumb-paul9.jpeg',
-        created: Date.now(),
+      addMessage({
         content: event.target.value,
       })
       event.target.value = '';
@@ -41,14 +42,13 @@ function ChatInput({addMsg}) {
   );
 }
 
-function ChatContainer() {
+function ChatContainer(props) {
   const [msgs, setMsgs] = useState([]);
-  const addMsg = (msg) => setMsgs(prev => [...prev, msg]);
   return (
     <div className="chat-container">
       <ChatHeader />
-      <ChatMain msgs={msgs} />
-      <ChatInput addMsg={addMsg} />
+      <ChatMain messages={props.messages} />
+      <ChatInput addMessage={props.addMessage} />
     </div>
   );
 }

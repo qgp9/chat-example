@@ -1,4 +1,5 @@
-// Your web app's Firebase configuration
+import firebase from "firebase/app";
+
 var firebaseConfig = {
   apiKey: "AIzaSyBFzput2X1PZ5casEiwLHwq6SWMB9R_FRw",
   authDomain: "chat-paul9.firebaseapp.com",
